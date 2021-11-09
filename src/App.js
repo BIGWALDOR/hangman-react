@@ -1,11 +1,14 @@
 import React from 'react'
 import './App.css';
+import Header from './components/Header'
+import Figure from './components/Figure'
 
 function App() {
   return (
-    <div>
-    
-    </div>
+    <>
+      <Header />
+      <Figure /> 
+    </>
   );
 }
 

@@ -7,14 +7,14 @@ import Word from './components/Word'
 import Popup from './components/Popup'
 import Notification from './components/Notification'
 import { showNotification as show } from './helpers/helpers'
+import { randomWords } from './data/words'
 
-const words = ['application', 'programming', 'interface', 'wizard'];
-
-let selectedWord = words[Math.floor(Math.random() * words.length)];
+let selectedWord = randomWords()
 
 
 
 function App() {
+  // Define states for the game
   const [playable, setPlayable] = useState(true)
   const [correctLetters, setCorrectLetters] = useState([])
   const [wrongLetters, setWrongLetters] = useState([])
@@ -23,6 +23,7 @@ function App() {
   useEffect(() => {
     const handleKeydown = (event) => {
       const { key, keyCode } = event
+      // keyCode 65 - 90 = [A-Z]
       if (playable && keyCode >= 65 && keyCode <= 90) {
         const letter = key.toLowerCase()
 
@@ -45,6 +46,7 @@ function App() {
       }
     }
 
+    // Listen for keydown event within the window
     window.addEventListener('keydown', handleKeydown) 
 
     return () => window.removeEventListener('keydown', handleKeydown)
@@ -58,7 +60,7 @@ function App() {
     setCorrectLetters([])
     setWrongLetters([])
 
-    selectedWord = words[Math.floor(Math.random() * words.length)]
+    selectedWord = randomWords()
   }
 
   return (
